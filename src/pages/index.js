@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import styled from 'styled-components'
+
+const H1 = styled.h1({
+  background: 'linear-gradient(to right, #f6d365 0%, #fda085 100%)',
+})
 
 export default function Home() {
   return (
@@ -12,9 +17,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <H1>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        </H1>
 
         <p className={styles.description}>
           Get started by editing{' '}
