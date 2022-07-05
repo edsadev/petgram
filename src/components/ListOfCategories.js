@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Category from './Category'
 import styled from 'styled-components'
 
@@ -16,10 +16,18 @@ export const Item = styled.li`
 `
 
 export default function ListOfCategories() {
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    fetch('https://petgram-server-edmundo0994.vercel.app/categories')
+      .then(res => res.json())
+      .then(json => setCategories(json))
+  }, [])
+
   return (
     <List>
       {
-        [1, 2, 3, 4, 5, 6, 7, 8, 9].map(category => <Item key={category}><Category /></Item>)
+        categories.map(category => <Item key={category.id}><Category {...category} /></Item>)
       }
     </List>
   )

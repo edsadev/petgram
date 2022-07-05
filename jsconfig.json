@@ -8,6 +8,7 @@
       "@common/*": ["common/*"],
       "@hooks/*": ["hooks/*"],
       "@images/*": ["images/*"],
+      "@services/*": ["services/*"],
     }
   }
 }
