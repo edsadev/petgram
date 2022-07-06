@@ -17,6 +17,7 @@ export const Image = styled.img`
   object-fit: cover;
   height: 75px;
   width: 75px;
+  margin-bottom: 12px;
 `
 
 const DEFAULT_IMAGE = 'https://i.imgur.com/dJa0Hpl.jpg'
