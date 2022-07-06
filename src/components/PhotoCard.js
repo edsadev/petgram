@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { fadeIn } from "@styles/animation";
 import { useEffect, useState, useRef } from "react";
+import useNearScreen from "@hooks/useNearScreen";
+import useLocalStorage from "@hooks/useLocalStorage";
 
 const Card = styled.div`
   margin-bottom: 32px;
@@ -43,38 +45,10 @@ const Button = styled.button`
 `
 
 export default function PhotoCard ({id, likes = 0, src}) {
-  const cardRef = useRef(null)
-  const [show, setShow] = useState(false)
+  const { show, cardRef } = useNearScreen()
   const key = `liked-${id}`
-
-  const [liked, setLiked] = useState(() => {
-    try {
-      return JSON.parse(window.localStorage.getItem(key))
-    } catch (e) {
-      return false
-    }
-  })
   
-  useEffect(() => {
-    const observer = new window.IntersectionObserver((entries) => {
-      const { isIntersecting } = entries[0]
-      if(isIntersecting) {
-        setShow(true)
-        observer.disconnect()
-      }
-    })
-    observer.observe(cardRef.current)
-  }, [cardRef])
-
-  const setLocalStorage = (value) => {
-    try {
-      console.log(key)
-      window.localStorage.setItem(key, value)
-      setLiked(value)
-    } catch (e) {
-      console.log(e)
-    }
-  }
+  const [liked, setLiked] = useLocalStorage(key, false)
 
   return (
     <Card ref={cardRef}>
@@ -85,7 +59,7 @@ export default function PhotoCard ({id, likes = 0, src}) {
               <Img src={src} alt={`Imagen ${id}`}/>
             </ImgWrapper>
           </Link>
-          <Button onClick={() => setLocalStorage(!liked)}>
+          <Button onClick={() => setLiked(!liked)}>
             {liked 
               ? <MdFavorite color="red" size="32px"/>
               : <MdFavoriteBorder color="gray" size="32px"/>
