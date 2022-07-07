@@ -1,6 +1,6 @@
-import ListOfCategories from '../components/ListOfCategories'
-import ListOfPhotoCards from '../components/ListOfPhotoCards'
-import Logo from '../components/Logo'
+import ListOfCategories from '@components/ListCat'
+import ListOfPhotoCards from '@components/ListPhoto'
+import Logo from '@components/Logo'
 
 export default function Home() {
   return (
