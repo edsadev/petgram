@@ -1,8 +1,8 @@
 import React from 'react'
-import styled, {keyframes} from 'styled-components'
+import styled from 'styled-components'
 import Category from './Category'
 import {useCategoriesData} from '@hooks/useCategoriesData'
-import {AiOutlineLoading3Quarters} from 'react-icons/ai'
+import LoadingScreen from '@common/LoadingScreen'
 
 export const List = styled.ul`
 display: flex;
@@ -23,24 +23,6 @@ export const Item = styled.li`
   padding: 0 8px;
 `
 
-const loop = keyframes`
-  from {
-    transform: rotate(0deg);
-  } to {
-    transform: rotate(360deg);
-  }
-`
-
-export const LoadingScreen = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  & svg{
-    animation: ${loop} 1s linear infinite;
-  }
-`
-
 export default function ListOfCategories() {
   const {categories, loading} = useCategoriesData()
 
@@ -48,7 +30,7 @@ export default function ListOfCategories() {
     <List>
       {
         loading 
-          ? <LoadingScreen><AiOutlineLoading3Quarters size={'32px'}/></LoadingScreen> 
+          ? <LoadingScreen />
           : categories.map(category => <Item key={category.id}><Category {...category} /></Item>)
       }
     </List>

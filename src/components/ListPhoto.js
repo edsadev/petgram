@@ -1,10 +1,26 @@
 import PhotoCard from '@components/PhotoCard'
-import { photos } from '@services/db.json'
+import { gql, useQuery } from "@apollo/client";
+import LoadingScreen from '@common/LoadingScreen'
 
 export default function ListOfPhotoCards() {
+  const withPhotos = gql`  query getPhotos {
+    photos {
+    id
+    categoryId
+    src
+    likes
+    userId
+    liked
+    }
+  }`
+
+  const { loading, error, data } = useQuery(withPhotos);
+
   return (
     <ul>
-      {photos.map(photo => <PhotoCard key={photo.id} {...photo} />)}
+      {loading
+       ? <LoadingScreen />
+       : data?.photos?.map(photo => <PhotoCard key={photo.id} {...photo} />)}
     </ul>
   )
 }

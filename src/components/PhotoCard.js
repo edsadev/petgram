@@ -2,7 +2,6 @@ import Link from "next/link";
 import styled from 'styled-components'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { fadeIn } from "@styles/animation";
-import { useEffect, useState, useRef } from "react";
 import useNearScreen from "@hooks/useNearScreen";
 import useLocalStorage from "@hooks/useLocalStorage";
 
