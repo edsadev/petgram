@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import { fadeIn } from '@styles/animation';
 
 const Nav = styled.nav`
+  margin: 0 auto;
+  max-width: 500px;
   display: flex;
   width: 100%;
   position: fixed;
@@ -43,21 +45,21 @@ export default function BottomNav() {
       <Link href="/">
         
           { pathname === '/' 
-            ? <a className="selected" ><AiFillHome size="32px" /></a>
-            : <a><AiOutlineHome size={32} /></a>
+            ? <a className="selected" ><AiFillHome size="24px" /></a>
+            : <a><AiOutlineHome size={24} /></a>
           }
         
       </Link>
       <Link href="/favs">
         { pathname === '/favs'
-          ? <a className="selected" ><AiFillHeart size="32px" /></a>
-          : <a><AiOutlineHeart size={32} /></a>
+          ? <a className="selected" ><AiFillHeart size="24px" /></a>
+          : <a><AiOutlineHeart size={24} /></a>
         }
       </Link>
       <Link href="/user">
         { pathname === '/user'
-          ? <a className="selected" ><RiUserFill size="32px" className="selected" /></a>
-          : <a><RiUserLine size={32} /></a>
+          ? <a className="selected" ><RiUserFill size="24px" className="selected" /></a>
+          : <a><RiUserLine size={24} /></a>
         }
       </Link>
     </Nav>
