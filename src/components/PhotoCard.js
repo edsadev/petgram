@@ -21,7 +21,14 @@ const ImgWrapper = styled.div`
   overflow: hidden;
   padding: 70% 0 0 0;
   position: relative;
-  width: 100%; 
+  width: 100%;
+  cursor: ${(props) => { 
+    if (props.extraClass === 'noPointer'){
+      return 'default'
+    } else {
+      return 'pointer'
+    }
+  }}
 `
 
 const Img = styled.img`
@@ -43,7 +50,7 @@ const Button = styled.button`
   }
 `
 
-export default function PhotoCard ({id, likes = 0, src}) {
+export default function PhotoCard ({id, likes = 0, src, extraClass}) {
   const { show, cardRef } = useNearScreen()
   const key = `liked-${id}`
   
@@ -53,8 +60,8 @@ export default function PhotoCard ({id, likes = 0, src}) {
     <Card ref={cardRef}>
       {
         show && <>
-          <Link href={`/detail/${id}`}>
-            <ImgWrapper>
+          <Link href={`/?detail=${id}`}>
+            <ImgWrapper extraClass={extraClass}>
               <Img src={src} alt={`Imagen ${id}`}/>
             </ImgWrapper>
           </Link>
