@@ -1,6 +1,6 @@
 import PhotoCard from '@components/PhotoCard'
 import { gql, useQuery } from "@apollo/client";
-import LoadingScreen from '@common/LoadingScreen'
+import LoadingIcon from '@common/LoadingIcon'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ const Div = styled.div`
 export default function PhotoCardWithQuery({id}) {
   const router = useRouter()
 
-  const GET_ANIMAL = gql`
+  const GET_SINGLE_PHOTO = gql`
     query getSinglePhoto($id: ID!) {
       photo(id: $id) {
         id
@@ -37,7 +37,7 @@ export default function PhotoCardWithQuery({id}) {
       }
     }`
 
-  const { loading, error, data } = useQuery(GET_ANIMAL, {variables: {id}});
+  const { loading, error, data } = useQuery(GET_SINGLE_PHOTO, {variables: {id}});
 
   if (error) {
     console.log(error);
@@ -49,7 +49,7 @@ export default function PhotoCardWithQuery({id}) {
       <AiOutlineArrowLeft className="left-arrow" size={24} onClick={() => router.back()} />
       <ul>
         {loading
-        ? <LoadingScreen />
+        ? <LoadingIcon size={32}/>
         : <PhotoCard {...data.photo} extraClass="noPointer"/>}
       </ul>
     </Div>

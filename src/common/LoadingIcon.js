@@ -20,10 +20,10 @@ const Loading = styled.div`
   }
 `
 
-export default function LoadingScreen(){
+export default function LoadingIcon({size}){
   return (
     <Loading>
-      <AiOutlineLoading3Quarters size={'32px'}/>
+      <AiOutlineLoading3Quarters size={size}/>
     </Loading>
   )
 }

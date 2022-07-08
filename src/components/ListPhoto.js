@@ -1,6 +1,6 @@
 import PhotoCard from '@components/PhotoCard'
 import { gql, useQuery } from "@apollo/client";
-import LoadingScreen from '@common/LoadingScreen'
+import LoadingIcon from '@common/LoadingIcon'
 
 export default function ListOfPhotoCards({categoryId}) {
   const ANIMAL_QUERY = gql`  
@@ -29,7 +29,7 @@ export default function ListOfPhotoCards({categoryId}) {
   return (
     <ul>
       {loading
-       ? <LoadingScreen />
+       ? <LoadingIcon size={32}/>
        : data?.photos?.map(photo => <PhotoCard key={photo.id} {...photo} />)}
     </ul>
   )

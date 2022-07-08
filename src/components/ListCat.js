@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Category from './Category'
 import {useCategoriesData} from '@hooks/useCategoriesData'
-import LoadingScreen from '@common/LoadingScreen'
+import LoadingIcon from '@common/LoadingIcon'
 
 export const List = styled.ul`
 display: flex;
@@ -30,7 +30,7 @@ export default function ListOfCategories() {
     <List>
       {
         loading 
-          ? <LoadingScreen />
+          ? <LoadingIcon size={32}/>
           : categories.map(category => <Item key={category.id}><Category {...category} /></Item>)
       }
     </List>

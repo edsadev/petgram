@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styled from 'styled-components'
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { fadeIn } from "@styles/animation";
 import useNearScreen from "@hooks/useNearScreen";
 import useLocalStorage from "@hooks/useLocalStorage";
+import FavButton from "./FavButton";
 
 const Card = styled.div`
   margin-bottom: 32px;
@@ -21,14 +21,14 @@ const ImgWrapper = styled.div`
   overflow: hidden;
   padding: 70% 0 0 0;
   position: relative;
-  width: 100%;
   cursor: ${(props) => { 
     if (props.extraClass === 'noPointer'){
       return 'default'
     } else {
       return 'pointer'
     }
-  }}
+  }};
+  width: 100%;
 `
 
 const Img = styled.img`
@@ -39,15 +39,6 @@ const Img = styled.img`
   position: absolute;
   top: 0;
   width: 100%;
-`
-
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  padding-top: 8px;
-  & svg {
-    margin-right: 4px;
-  }
 `
 
 export default function PhotoCard ({id, likes = 0, src, extraClass}) {
@@ -65,13 +56,7 @@ export default function PhotoCard ({id, likes = 0, src, extraClass}) {
               <Img src={src} alt={`Imagen ${id}`}/>
             </ImgWrapper>
           </Link>
-          <Button onClick={() => setLiked(!liked)}>
-            {liked 
-              ? <MdFavorite color="red" size="32px"/>
-              : <MdFavoriteBorder color="gray" size="32px"/>
-            }
-          {likes} Likes!
-          </Button>
+          <FavButton liked={liked} likes={likes} setLiked={setLiked} idPhoto={id} />
         </>
       }
     </Card>
