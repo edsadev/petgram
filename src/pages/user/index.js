@@ -3,9 +3,9 @@ import { useAuth } from "@hooks/useAuth"
 import NotRegisteredUser from "@components/NotRegisteredUser"
 
 export default function Users() {
-  const { user } = useAuth()
+  const { isAuth } = useAuth()
 
-  if (!user.isAuth){
+  if (!isAuth){
     return (
       <MainLayout>
         <NotRegisteredUser />

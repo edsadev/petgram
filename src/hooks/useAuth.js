@@ -15,7 +15,11 @@ export const useAuth = () => {
 }
 
 function useProviderAuth() {
-  const [user, setUser] = useState({isAuth: false})
+  const [isAuth, setIsAuth] = useState(false)
+
+  const login = () => {
+    setIsAuth(true)
+  }
 
   // const signIn = async (email, password) => {
   //   const options = {
@@ -45,6 +49,7 @@ function useProviderAuth() {
   // }
 
   return {
-    user
+    isAuth,
+    login
   }
 }

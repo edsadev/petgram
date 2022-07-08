@@ -1,7 +1,7 @@
+import { useAuth } from "@hooks/useAuth"
+import UserForm from "@common/UserForm"
+
 export default function NotRegisteredUser(){
-  return (
-    <div>
-      <h1>Not Registered User</h1>
-    </div>
-  )
+  const { login } = useAuth()
+  return <UserForm login={login} title={"Register"}/>
 }
