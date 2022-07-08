@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Link from 'next/link'
 
 export const Anchor = styled.a`
   display: flex;
@@ -22,11 +23,13 @@ export const Image = styled.img`
 
 const DEFAULT_IMAGE = 'https://i.imgur.com/dJa0Hpl.jpg'
 
-export default function Category({ cover = DEFAULT_IMAGE, path, emoji = '?' }) {
+export default function Category({ cover = DEFAULT_IMAGE, emoji = '?', id}) {
   return (
-    <Anchor href={path}>
-      <Image src={cover} alt={emoji} />
-      <span>{emoji}</span>
-    </Anchor>
+    <Link href={`/pets/${id}`} passHref>
+      <Anchor>
+        <Image src={cover} alt={emoji} />
+        <span>{emoji}</span>
+      </Anchor>
+    </Link>
   )
 }

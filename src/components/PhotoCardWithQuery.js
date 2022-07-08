@@ -4,6 +4,7 @@ import LoadingIcon from '@common/LoadingIcon'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import Logo from './Logo';
 
 const Div = styled.div`
   position: relative;
@@ -24,6 +25,8 @@ const Div = styled.div`
 
 export default function PhotoCardWithQuery({id}) {
   const router = useRouter()
+
+  console.log(id)
 
   const GET_SINGLE_PHOTO = gql`
     query getSinglePhoto($id: ID!) {

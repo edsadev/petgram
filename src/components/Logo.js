@@ -1,13 +1,16 @@
 import styled from 'styled-components'
+import { useRouter } from 'next/router'
 
 const Svg = styled.svg`
   width: 100%;
   margin: -20px auto 0 auto;
   transform: scale(0.75);
+  cursor: pointer;
 `
 
 export default function Logo(props){
-  return (  
+  const router = useRouter()
+  return (
     <Svg
       width={385.475}
       height={122}
@@ -18,6 +21,7 @@ export default function Logo(props){
       }}
       preserveAspectRatio="xMidYMid"
       {...props}
+      onClick={() => router.push('/')}
     >
       <defs>
         <linearGradient

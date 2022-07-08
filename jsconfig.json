@@ -9,6 +9,7 @@
       "@hooks/*": ["hooks/*"],
       "@images/*": ["images/*"],
       "@services/*": ["services/*"],
+      "@layouts/*": ["layouts/*"],
     }
   },
   

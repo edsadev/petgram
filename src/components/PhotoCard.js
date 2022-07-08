@@ -51,7 +51,7 @@ export default function PhotoCard ({id, likes = 0, src, extraClass}) {
     <Card ref={cardRef}>
       {
         show && <>
-          <Link href={`/?detail=${id}`}>
+          <Link href={`/detail/${id}`}>
             <ImgWrapper extraClass={extraClass}>
               <Img src={src} alt={`Imagen ${id}`}/>
             </ImgWrapper>
