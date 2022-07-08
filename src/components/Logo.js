@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 const Svg = styled.svg`
   width: 100%;
   margin: -20px auto 0 auto;
-  transform: scale(0.75);
+  transform: scale(0.8);
   cursor: pointer;
 `
 
@@ -13,7 +13,7 @@ export default function Logo(props){
   return (
     <Svg
       width={385.475}
-      height={122}
+      height={100}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="57.263 14 385.475 122"
       style={{
