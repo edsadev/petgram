@@ -1,24 +1,37 @@
-import React, { useState, useContext, createContext } from 'react'
+import React, { useState, useContext, createContext, useEffect } from 'react'
 // import axios from 'axios'
 // import Cookie from 'js-cookie'
 // import endPoints from '@services/api/'
 
+// CONTEXT:
 const AuthContext = createContext()
 
+// PROVIDER:
 export function ProviderAuth({ children }) {
   const auth = useProviderAuth()
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
 }
 
+// CONSUMER:
 export const useAuth = () => {
   return useContext(AuthContext)
 }
 
+// PROVIDER HOOK:
 function useProviderAuth() {
   const [isAuth, setIsAuth] = useState(false)
 
-  const login = () => {
+  useEffect(() => {
+    setIsAuth(() => {
+      if (window.sessionStorage.getItem('token') != "undefined") {
+        return window.sessionStorage.getItem('token')
+      } 
+    })
+  }, [setIsAuth])
+
+  const activateAuth = (token) => {
     setIsAuth(true)
+    window.sessionStorage.setItem('token', token)
   }
 
   // const signIn = async (email, password) => {
@@ -50,6 +63,6 @@ function useProviderAuth() {
 
   return {
     isAuth,
-    login
+    activateAuth,
   }
 }

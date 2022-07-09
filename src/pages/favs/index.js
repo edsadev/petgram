@@ -5,6 +5,8 @@ import NotRegisteredUser from "@components/NotRegisteredUser"
 export default function Favs() {
   const { isAuth } = useAuth()
 
+  console.log(isAuth)
+
   if (!isAuth){
     return (
       <MainLayout>
