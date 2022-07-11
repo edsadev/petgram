@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { useAuth } from "@hooks/useAuth"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
 
 const Div = styled.div`
   width: 100%;
@@ -24,7 +26,15 @@ const Button = styled.button`
 
 
 export default function User() {
-  const { logOut } = useAuth()
+  const { logOut, isAuth } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isAuth){
+      router.push("/login")
+    }
+  }, [isAuth, router])
+
   return (
     <Div>
       <h1>User</h1>

@@ -4,6 +4,8 @@ import useGetFavorites from '@hooks/useGetFavorites'
 import LoadingIcon from '@common/LoadingIcon'
 import PhotoCard from './PhotoCard'
 import { useEffect } from 'react'
+import { useRouter } from "next/router"
+import { useAuth } from "@hooks/useAuth"
 
 const LinkTo = styled(Link)`
   border-radius: 8px;
@@ -24,15 +26,17 @@ const Div = styled.div`
   padding-top: 32px;
 `
 
-const Image = styled.img`
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-`
-
 export default function Favotires(){
   const { dataFavs, loadingFavs, errorFavs, refetch } = useGetFavorites()
+  const { isAuth } = useAuth()
+  const router = useRouter()
 
+  useEffect(() => {
+    if (!isAuth){
+      router.push("/login")
+    }
+  }, [isAuth, router])
+  
   useEffect(() => {refetch()}, [refetch])
 
   if (loadingFavs) return <LoadingIcon />
