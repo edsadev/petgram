@@ -1,5 +1,4 @@
 import React, { useState, useContext, createContext, useEffect } from 'react'
-import { useRouter } from 'next/router'
 
 // CONTEXT:
 const AuthContext = createContext()
@@ -18,7 +17,6 @@ export const useAuth = () => {
 // PROVIDER HOOK:
 function useProviderAuth() {
   const [isAuth, setIsAuth] = useState(false)
-  const router = useRouter()
   
   useEffect(() => {
     setIsAuth(() => {
@@ -31,7 +29,7 @@ function useProviderAuth() {
   const activateAuth = (token) => {
     setIsAuth(token)
     window.sessionStorage.setItem('token', token)
-    router.push("/")
+    window.location.href = '/'
   }
 
   const logOut = () => {
