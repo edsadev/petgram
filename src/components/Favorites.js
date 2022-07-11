@@ -40,6 +40,7 @@ export default function Favotires(){
 
   return (
     <Div>
+      {dataFavs?.favs?.length <= 0 && <p>No tienes favoritos</p>}
       {dataFavs?.favs?.map(fav => (
         <LinkTo key={fav.id} href={`/detail/${fav.id}`} >
           <PhotoCard id={fav.id} likes={fav.likes} src={fav.src}/>

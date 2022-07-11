@@ -2,7 +2,6 @@ import Link from "next/link";
 import styled from 'styled-components'
 import { fadeIn } from "@styles/animation";
 import useNearScreen from "@hooks/useNearScreen";
-import useLocalStorage from "@hooks/useLocalStorage";
 import FavButton from "./FavButton";
 
 const Card = styled.div`
