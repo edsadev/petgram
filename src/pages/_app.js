@@ -48,15 +48,12 @@ function MyApp({ Component, pageProps }) {
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
 
-        <title>{"Petgram - Tu app de animales favorita"}</title>
+        <title>Petgram - Tu app de animales favorita</title>
         <meta name="description" content={"Esta es una red social hecha para todos los amantes de animales domésticos"} />
         <meta property="og:title" content={"Petgram"} />
         <meta property="og:description" content={"Esta es una red social hecha para todos los amantes de animales domésticos"} />
         <meta property="og:site_name" content={"Petgram.com"} />
         <meta property="twitter:creator" content={"Edmundo Salamanca"} />
-
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#fff" />
       </Head>
       <ProviderAuth>
         <ApolloProvider client={client}>
