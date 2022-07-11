@@ -32,10 +32,8 @@ const Image = styled.img`
 
 export default function Favotires(){
   const { dataFavs, loadingFavs, errorFavs, refetch } = useGetFavorites()
-  
-  useEffect(() => {
-    refetch()
-  }, [refetch])
+
+  useEffect(() => {refetch()}, [refetch])
 
   if (loadingFavs) return <LoadingIcon />
   if (errorFavs) return <div>Error</div>

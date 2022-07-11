@@ -26,8 +26,6 @@ const Div = styled.div`
 export default function PhotoCardWithQuery({id}) {
   const router = useRouter()
 
-  console.log(id)
-
   const GET_SINGLE_PHOTO = gql`
     query getSinglePhoto($id: ID!) {
       photo(id: $id) {

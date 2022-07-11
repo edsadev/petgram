@@ -13,7 +13,7 @@ const GET_FAVORITES = gql`
 `;
 
 export default function useGetFavorites() {
-  const { data, loading, error, refetch } = useQuery(GET_FAVORITES)
+  const { data, loading, error, refetch } = useQuery(GET_FAVORITES, {fetchPolicy: "network-only"});
   return {
     dataFavs: data,
     loadingFavs: loading,

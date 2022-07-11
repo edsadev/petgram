@@ -16,15 +16,11 @@ export default function ListOfPhotoCards({categoryId}) {
       }
     }`
 
-  const { loading, error, data, refetch } = useQuery(ANIMAL_QUERY, {
+  const { loading, error, data } = useQuery(ANIMAL_QUERY, {
     variables: {
       categoryId 
     },
   });
-
-  useEffect(() => {
-    refetch()
-  }, [refetch])
 
   return (
     <ul>

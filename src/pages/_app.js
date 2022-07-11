@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink, from, ApolloLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
-import { ProviderAuth } from '@hooks/useAuth'
+import { ProviderAuth, useAuth } from '@hooks/useAuth'
 
 const httpLink = createHttpLink({
   uri: 'https://petgram-server-edmundo0994.vercel.app/graphql',
@@ -31,13 +31,12 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-const errorLink = onError(({ graphQLErrors, networkError, response}) => {
-  if (graphQLErrors)
-    graphQLErrors.forEach(({ message, locations, path }) =>
-    console.log(
-      `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
+const errorLink = onError(({ graphQLErrors, networkError}) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+    })
+  }
   if (networkError) {
     window.sessionStorage.removeItem("token")
     window.location.href = "/"

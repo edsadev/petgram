@@ -34,6 +34,11 @@ function useProviderAuth() {
     window.sessionStorage.setItem('token', token)
   }
 
+  const logOut = () => {
+    setIsAuth(false)
+    window.sessionStorage.removeItem('token')
+  }
+
   // const signIn = async (email, password) => {
   //   const options = {
   //     headers: {
@@ -64,5 +69,6 @@ function useProviderAuth() {
   return {
     isAuth,
     activateAuth,
+    logOut,
   }
 }

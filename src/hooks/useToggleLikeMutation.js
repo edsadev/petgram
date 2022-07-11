@@ -12,6 +12,6 @@ const LIKE_PHOTO = gql`
 `
 
 export const useToggleLikeMutation = () => {
-  const [likePhoto, {data, loading, error}] = useMutation(LIKE_PHOTO)
+  const [likePhoto, {data, loading, error}] = useMutation(LIKE_PHOTO, {fetchPolicy: 'network-only'})
   return {likePhoto, dataToggleLike: data, loadingToggleLike: loading, errorToggleLike: error}
 }
