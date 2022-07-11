@@ -1,17 +1,14 @@
 import MainLayout from "@layouts/MainLayout"
 import { useAuth } from "@hooks/useAuth"
-import NotRegisteredUser from "@components/NotRegisteredUser"
 import Favotires from "@components/Favorites"
+import { useRouter } from "next/router"
 
 export default function Favs() {
   const { isAuth } = useAuth()
+  const router = useRouter()
 
   if (!isAuth){
-    return (
-      <MainLayout>
-        <NotRegisteredUser />
-      </MainLayout>
-    )
+    router.push("/login")
   }
 
   return (

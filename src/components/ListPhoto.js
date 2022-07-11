@@ -20,6 +20,7 @@ export default function ListOfPhotoCards({categoryId}) {
     variables: {
       categoryId 
     },
+    fetchPolicy: "cache-and-network"
   });
 
   return (

@@ -1,17 +1,14 @@
 import MainLayout from "@layouts/MainLayout"
 import { useAuth } from "@hooks/useAuth"
-import NotRegisteredUser from "@components/NotRegisteredUser"
 import User from "@components/User"
+import { useRouter } from "next/router"
 
 export default function Users() {
   const { isAuth } = useAuth()
+  const router = useRouter()
 
   if (!isAuth){
-    return (
-      <MainLayout>
-        <NotRegisteredUser />
-      </MainLayout>
-    )
+    router.push("/login")
   }
 
   return (
