@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client'
+import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink, from } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { ProviderAuth } from '@hooks/useAuth'
