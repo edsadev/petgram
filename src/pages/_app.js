@@ -1,8 +1,9 @@
 import '../styles/globals.css'
-import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink, from, ApolloLink } from '@apollo/client'
+import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
-import { ProviderAuth, useAuth } from '@hooks/useAuth'
+import { ProviderAuth } from '@hooks/useAuth'
+import Head from 'next/head'
 
 const httpLink = createHttpLink({
   uri: 'https://petgram-server-edmundo0994.vercel.app/graphql',
@@ -17,19 +18,6 @@ const authLink = setContext((_, { headers }) => {
       },
   }
 })
-
-const authMiddleware = new ApolloLink((operation, forward) => {
-  const token = window.sessionStorage.getItem("token")
-  console.log("entre a authMiddleware")
-  operation.setContext(({ headers = {} }) => ({
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  }));
-
-  return forward(operation);
-});
 
 const errorLink = onError(({ graphQLErrors, networkError}) => {
   if (graphQLErrors) {
@@ -50,11 +38,32 @@ const client = new ApolloClient({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ProviderAuth>
-      <ApolloProvider client={client}>
-        <Component {...pageProps} />
-      </ApolloProvider>
-    </ProviderAuth>
+    <>
+
+      <Head>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+
+        <title>{"Petgram - Tu app de animales favorita"}</title>
+        <meta name="description" content={"Esta es una red social hecha para todos los amantes de animales domésticos"} />
+        <meta property="og:title" content={"Petgram"} />
+        <meta property="og:description" content={"Esta es una red social hecha para todos los amantes de animales domésticos"} />
+        <meta property="og:site_name" content={"Petgram.com"} />
+        <meta property="twitter:creator" content={"Edmundo Salamanca"} />
+
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#fff" />
+      </Head>
+      <ProviderAuth>
+        <ApolloProvider client={client}>
+          <Component {...pageProps} />
+        </ApolloProvider>
+      </ProviderAuth>
+    </>
   )
 }
 

@@ -23,7 +23,7 @@ export const Item = styled.li`
   padding: 0 8px;
 `
 
-export default function ListOfCategories() {
+function ListOfCategories() {
   const {categories, loading} = useCategoriesData()
 
   return (
@@ -36,3 +36,5 @@ export default function ListOfCategories() {
     </List>
   )
 }
+
+export default React.memo(ListOfCategories)

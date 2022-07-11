@@ -1,7 +1,8 @@
+import React from 'react'
 import ListOfCategories from '@components/ListCat'
 import ListOfPhotoCards from '@components/ListPhoto'
 
-export default function Homepage({id}) {
+function Homepage({id}) {
   return (
     <>
       <ListOfCategories />
@@ -9,3 +10,5 @@ export default function Homepage({id}) {
     </>
   )
 }
+
+export default React.memo(Homepage, (prevProps, nextProps) => prevProps.id === nextProps.id)
