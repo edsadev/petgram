@@ -11,7 +11,6 @@ export default function NotRegisteredUser(){
   const { activateAuth } = useAuth()
 
   useEffect(() => {
-    console.log("Entre al useeffect de NotRegisteredUser") 
     if (dataLogin) {
       activateAuth(dataLogin?.login)
     } else if (dataRegister){

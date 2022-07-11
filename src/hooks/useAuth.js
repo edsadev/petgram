@@ -23,14 +23,14 @@ function useProviderAuth() {
 
   useEffect(() => {
     setIsAuth(() => {
-      if (window.sessionStorage.getItem('token') != "undefined") {
+      if (window.sessionStorage.getItem('token')) {
         return window.sessionStorage.getItem('token')
       } 
     })
   }, [setIsAuth])
 
   const activateAuth = (token) => {
-    setIsAuth(true)
+    setIsAuth(token)
     window.sessionStorage.setItem('token', token)
   }
 

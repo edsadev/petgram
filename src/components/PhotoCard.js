@@ -9,7 +9,6 @@ const Card = styled.div`
   margin-bottom: 32px;
   box-shadow: 10px 10px 16px rgba(0, 0, 0, .2);
   border-radius: 10px;
-  padding-bottom: 12px;
   margin-inline: 12px;
   min-height: 200px;
 `
@@ -41,14 +40,11 @@ const Img = styled.img`
   width: 100%;
 `
 
-export default function PhotoCard ({id, likes = 0, src, extraClass}) {
+export default function PhotoCard ({id, likes = 0, src, extraClass, liked}) {
   const { show, cardRef } = useNearScreen()
-  const key = `liked-${id}`
   
-  const [liked, setLiked] = useLocalStorage(key, false)
-
   return (
-    <Card ref={cardRef}>
+    <Card id={id} ref={cardRef}>
       {
         show && <>
           <Link href={`/detail/${id}`}>
@@ -56,7 +52,7 @@ export default function PhotoCard ({id, likes = 0, src, extraClass}) {
               <Img src={src} alt={`Imagen ${id}`}/>
             </ImgWrapper>
           </Link>
-          <FavButton liked={liked} likes={likes} setLiked={setLiked} idPhoto={id} />
+          {liked !== undefined && <FavButton liked={liked} likes={likes} idPhoto={id} />}
         </>
       }
     </Card>

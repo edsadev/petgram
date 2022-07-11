@@ -1,6 +1,7 @@
 import PhotoCard from '@components/PhotoCard'
 import { gql, useQuery } from "@apollo/client";
 import LoadingIcon from '@common/LoadingIcon'
+import { useEffect } from 'react';
 
 export default function ListOfPhotoCards({categoryId}) {
   const ANIMAL_QUERY = gql`  
@@ -15,16 +16,15 @@ export default function ListOfPhotoCards({categoryId}) {
       }
     }`
 
-  const { loading, error, data } = useQuery(ANIMAL_QUERY, {
+  const { loading, error, data, refetch } = useQuery(ANIMAL_QUERY, {
     variables: {
       categoryId 
-    }
+    },
   });
 
-  if (error) {
-    console.log(error);
-    return <div>Error!</div>
-  }
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   return (
     <ul>

@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import styled from 'styled-components'
-
 const Div = styled.div`
   display: flex;
   flex-flow: column;
@@ -71,7 +70,11 @@ export default function UserForm({disabled, onSubmit, title, change, error}){
   const formRef = useRef();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await onSubmit(formRef.current.email.value, formRef.current.password.value)
+    try {
+      await onSubmit(formRef.current.email.value, formRef.current.password.value)
+    } catch (e) {
+      console.error(e)
+    }
   }
   
   return (
